@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Design the new landing page",
+    "desc": "Create a clean first impression.",
+    "status": "progress",
+    "priority": "High",
+    "assignee": "Jamie",
+    "due": ""
+  },
+  {
+    "id": 2,
+    "title": "Map the onboarding journey",
+    "desc": "Document the sign-up to activation flow.",
+    "status": "todo",
+    "priority": "Medium",
+    "assignee": "Shrreya",
+    "due": ""
+  }
+]

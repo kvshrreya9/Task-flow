@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827"><title>TaskFlow — Team Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark"><span></span><span></span><span></span></span><span>taskflow</span></a>
+      <div class="workspace-switch"><div class="workspace-icon">N</div><div><b>Northstar Studio</b><small>Free workspace</small></div><span class="chevron">⌄</span></div>
+      <p class="nav-label">WORKSPACE</p>
+      <nav class="nav">
+        <button class="nav-item active" data-view="board"><span class="nav-icon">▦</span>Project board <span class="nav-count">4</span></button>
+        <button class="nav-item" data-view="mytasks"><span class="nav-icon">☑</span>My tasks</button>
+        <button class="nav-item" data-view="timeline"><span class="nav-icon">◷</span>Timeline</button>
+        <button class="nav-item" data-view="insights"><span class="nav-icon">⌁</span>Workload insights</button>
+      </nav>
+      <p class="nav-label space-top">YOUR PROJECTS <button id="addProject" class="tiny-add" title="Add project">+</button></p>
+      <div class="project-link"><span class="project-dot purple"></span>Website redesign</div>
+      <div class="project-link"><span class="project-dot orange"></span>Mobile app</div>
+      <div class="project-link"><span class="project-dot green"></span>Marketing launch</div>
+      <div class="project-link"><span class="project-dot blue"></span>Research sprint</div>
+      <div class="sidebar-bottom">
+        <div class="upgrade-card"><div class="spark">✳</div><b>Make room for great work.</b><p>Keep projects moving without the busywork.</p><button id="focusMode">Start focus session <span>↗</span></button></div>
+        <div class="profile"><div class="avatar avatar-violet">SK</div><div><b>Shrreya K.</b><small>Workspace admin</small></div><span class="more">···</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Projects</span><span class="slash">/</span><b>Website redesign</b><span class="star">☆</span></div>
+        <div class="top-actions"><div class="search-wrap"><span>⌕</span><input id="searchInput" placeholder="Search tasks..." aria-label="Search tasks"><kbd>⌘ K</kbd></div><button class="icon-button" id="helpBtn" aria-label="Help">?</button><button class="icon-button notification" id="notifications" aria-label="Notifications">♧<i></i></button><div class="avatar avatar-violet">SK</div></div>
+      </header>
+      <section class="content">
+        <div class="heading-row">
+          <div><div class="eyebrow"><span class="eyebrow-dot"></span> PRODUCT TEAM <span class="eyebrow-sep">•</span> SPRINT 08</div><h1>Website redesign <span class="title-star">✳</span></h1><p class="subheading">A little more clarity. A lot more momentum.</p></div>
+          <div class="heading-actions"><button class="button button-light" id="shareBtn"><span>↗</span> Share</button><button class="button button-dark" id="newTaskBtn"><span>＋</span> New task</button></div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Open tasks</span><span class="stat-symbol lavender">▤</span></div><div class="stat-number" id="openCount">12 <small>tasks</small></div><div class="stat-foot"><span class="mini-line">↗</span> Keep the momentum going</div></article>
+          <article class="stat-card"><div class="stat-top"><span>Completed this week</span><span class="stat-symbol mint">✓</span></div><div class="stat-number" id="completedCount">08 <small>tasks</small></div><div class="stat-foot"><span class="positive">↑ 18%</span> vs. last week</div></article>
+          <article class="stat-card"><div class="stat-top"><span>Due soon</span><span class="stat-symbol peach">◷</span></div><div class="stat-number" id="dueCount">03 <small>tasks</small></div><div class="stat-foot"><span class="warning">Needs a little attention</span></div></article>
+          <article class="stat-card health-card"><div class="stat-top"><span>Project pulse</span><span class="pulse-dot"></span></div><div class="pulse-row"><div class="pulse-ring"><span id="healthScore">78</span><small>/100</small></div><div><b id="healthLabel">Looking good</b><p>Based on task flow<br>and due dates</p></div></div><div class="progress-track"><span id="healthBar" style="width:78%"></span></div></article>
+        </div>
+
+        <div class="board-toolbar"><div class="tabs"><button class="tab active" data-boardtab="board">Board <span class="tab-count" id="boardCount">12</span></button><button class="tab" data-boardtab="list">List view</button></div><div class="board-tools"><div class="member-stack"><div class="avatar avatar-blue">JM</div><div class="avatar avatar-orange">AL</div><div class="avatar avatar-green">RK</div><div class="avatar avatar-violet">SK</div><span class="member-plus">+2</span></div><button class="tool-button" id="filterBtn">☷ <span>Filter</span></button><button class="tool-button" id="sortBtn">↕ <span>Sort: priority</span></button><button class="tool-button more-tool" id="moreBtn">···</button></div></div>
+        <div id="filterPanel" class="filter-panel hidden"><label>Show priority <select id="priorityFilter"><option value="all">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select></label><label>Assignee <select id="assigneeFilter"><option value="all">Anyone</option><option>Shrreya</option><option>Jamie</option><option>Alex</option><option>Ravi</option></select></label><button id="clearFilters" class="text-button">Clear filters</button></div>
+        <div id="boardView" class="kanban">
+          <section class="column" data-status="todo"><header class="column-header"><div class="column-name"><span class="status-dot todo-dot"></span><b>To do</b><span class="column-count">0</span></div><button class="column-menu">···</button></header><div class="task-list" data-drop="todo"></div><button class="add-card" data-add="todo">＋ Add a task</button></section>
+          <section class="column" data-status="progress"><header class="column-header"><div class="column-name"><span class="status-dot progress-dot"></span><b>In progress</b><span class="column-count">0</span></div><button class="column-menu">···</button></header><div class="task-list" data-drop="progress"></div><button class="add-card" data-add="progress">＋ Add a task</button></section>
+          <section class="column" data-status="review"><header class="column-header"><div class="column-name"><span class="status-dot review-dot"></span><b>In review</b><span class="column-count">0</span></div><button class="column-menu">···</button></header><div class="task-list" data-drop="review"></div><button class="add-card" data-add="review">＋ Add a task</button></section>
+          <section class="column" data-status="done"><header class="column-header"><div class="column-name"><span class="status-dot done-dot"></span><b>Completed</b><span class="column-count">0</span></div><button class="column-menu">···</button></header><div class="task-list" data-drop="done"></div><button class="add-card" data-add="done">＋ Add a task</button></section>
+        </div>
+        <div id="listView" class="list-view hidden"></div>
+        <section class="insight-strip"><div class="insight-icon">✳</div><div class="insight-copy"><b>Momentum note</b><p id="momentumText">Your team is moving steadily. Keep review tasks from becoming the next bottleneck.</p></div><button id="insightAction" class="text-button">View workload <span>→</span></button></section>
+        <footer class="footer"><span>Made for teams that make things happen.</span><span><span class="live-dot"></span> All changes saved locally <span class="footer-sep">·</span> <button id="exportBtn">Export tasks ↗</button></span></footer>
+      </section>
+    </main>
+  </div>
+
+  <div id="taskModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <form id="taskForm" class="modal">
+      <div class="modal-header"><div><div class="eyebrow">TASK DETAILS</div><h2 id="modalTitle">Create a task</h2></div><button type="button" class="close-modal" data-close>×</button></div>
+      <label>Task title<input id="taskTitle" required maxlength="100" placeholder="e.g. Finalise the landing page"></label>
+      <label>Description<textarea id="taskDescription" rows="3" placeholder="What does done look like?"></textarea></label>
+      <div class="form-grid"><label>Status<select id="taskStatus"><option value="todo">To do</option><option value="progress">In progress</option><option value="review">In review</option><option value="done">Completed</option></select></label><label>Priority<select id="taskPriority"><option>High</option><option selected>Medium</option><option>Low</option></select></label></div>
+      <div class="form-grid"><label>Assignee<select id="taskAssignee"><option>Shrreya</option><option>Jamie</option><option>Alex</option><option>Ravi</option><option>Unassigned</option></select></label><label>Due date<input id="taskDue" type="date"></label></div>
+      <label>Blocked by (optional)<select id="taskBlocker"><option value="">No blocker</option></select></label>
+      <div class="modal-actions"><button type="button" class="button button-light" data-close>Cancel</button><button type="submit" class="button button-dark">Save task <span>→</span></button></div>
+    </form>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
